@@ -13,7 +13,7 @@ abstract class Vehicule
 
     public function __toString()
     {
-        return "Vitesse actuelle : " . $this->vitesse . " km/h<br/>";
+        return "Vitesse actuelle : " . $this->vitesse . " km/h";
     }
 }
 
@@ -36,9 +36,9 @@ class Voiture extends Vehicule
     {
         if (!$this->demarrer) {
             $this->demarrer = true;
-            echo "La voiture démarre.<br/>";
+            echo "La voiture démarre  ";
         } else {
-            echo "La voiture est déjà démarrée.<br/>";
+            echo "La voiture est déjà démarrée  ";
         }
     }
 
@@ -46,13 +46,13 @@ class Voiture extends Vehicule
     {
         $this->demarrer = false;
         $this->vitesse = 0;
-        echo "La voiture est éteinte.<br/>";
+        echo "La voiture est éteinte";
     }
 
     public function accelerer($nouvelleVitesse)
     {
         if (!$this->demarrer) {
-            echo "Impossible d'accélérer, la voiture est éteinte.<br/>";
+            echo "Impossible d'accélérer, la voiture est éteinte";
             return;
         }
 
@@ -64,7 +64,7 @@ class Voiture extends Vehicule
             $vitesseMaxAutorisee = $this->vitesse * 1.3;
 
             if ($nouvelleVitesse > $vitesseMaxAutorisee) {
-                echo "⚠️ Vous ne pouvez pas augmenter de plus de 30% d'un coup.<br/>";
+                echo "⚠️ Vous ne pouvez pas augmenter de plus de 30% d'un coup  ";
                 $nouvelleVitesse = $vitesseMaxAutorisee;
             }
 
@@ -76,14 +76,18 @@ class Voiture extends Vehicule
             $this->vitesse = $nouvelleVitesse;
         }
 
-        echo "Vitesse : " . $this->vitesse . " km/h<br/>";
+        echo "Vitesse : " . $this->vitesse . " km/h  ";
     }
 
     public function decelerer($valeur)
     {
+        if ($valeur > 20) {
+            echo "⚠️ Vous ne pouvez pas ralentir de plus de 20km/h d'un coup  ";
+            $valeur = 20;
+        }
         $this->vitesse -= $valeur;
         if ($this->vitesse < 0) $this->vitesse = 0;
-        echo "Vous ralentissez à " . $this->vitesse . " km/h<br/>";
+        echo "Vous ralentissez à " . $this->vitesse . " km/h  ";
     }
 }
 
@@ -100,4 +104,5 @@ echo $voiture1;
 $voiture1->decelerer(30);
 echo $voiture1;
 
-echo "Nombre de voitures créées : " . Voiture::getNombreVoiture() . "<br/>";
+echo "Nombre de voitures créées : " . Voiture::getNombreVoiture();
+
